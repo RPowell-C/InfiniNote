@@ -7,6 +7,8 @@ from tkinter.messagebox import *
 #Dialog Box
 from tkinter.filedialog import *
 
+#!/C:/User/garitbibbs/AppData/Local/Programs/Python/Python37/python.exe
+
 class Notepad:
     __root = Tk()
     __root.geometry('500x600')
@@ -30,7 +32,6 @@ class Notepad:
     def __init__(self, **kwargs):
         
         #Future Update Set Icon
-
         #Title
         self.__root.title("Untitled - InfiniNote")
         self.__TextArea['bg']='#8A8E8E'
@@ -87,8 +88,8 @@ class Notepad:
             # Save as new file 
             self.__file = asksaveasfilename(initialfile='Untitled.txt', 
                                             defaultextension=".txt", 
-                                            filetypes=[("Html Files [*.html]","*.html"), 
-                                                ("Text Documents [*.txt]","*.txt"),
+                                            filetypes=[("Text Files [*.txt]","*.txt"), 
+                                                ("HTML Files [*.html, *.htm]", "*.html"),
                                                 ("Python Files [*.py]", "*.py"),
                                                 ("CSS Files [*.css]", "*.css"),
                                                 ("C++ Files [*.cpp]", "*.cpp")]) 
@@ -125,7 +126,8 @@ class Notepad:
             #Try to open the file
 
             file = open(self.__file, "r")
-            self.__TextArea.insert(1.0, file.read())
+            lines = file.read()
+            self.__TextArea.insert('1.0', chars=lines)
             file.close()
             
     def __quitApplication(self):
@@ -136,7 +138,7 @@ class Notepad:
         self.__file = None
         self.__TextArea.delete(1.0, END)
     def __ShowInfo(self):
-        showinfo("InfiniNote", "Version-0.0 \n JacHammer Studios")
+        showinfo("InfiniNote", "Version-0.2 \n Reid Powell")
     def __Clear(self):
         self.__TextArea.delete(1.0, END)
     def run(self):

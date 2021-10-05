@@ -32,7 +32,6 @@ class Notepad:
     def __init__(self, **kwargs):
         
         #Future Update Set Icon
-
         #Title
         self.__root.title("Untitled - InfiniNote")
         self.__TextArea['bg']='#8A8E8E'
@@ -89,8 +88,8 @@ class Notepad:
             # Save as new file 
             self.__file = asksaveasfilename(initialfile='Untitled.txt', 
                                             defaultextension=".txt", 
-                                            filetypes=[("Html Files [*.html]","*.html"), 
-                                                ("Text Documents [*.txt]","*.txt"),
+                                            filetypes=[("Text Files [*.txt]","*.txt"), 
+                                                ("HTML Files [*.html, *.htm]", "*.html"),
                                                 ("Python Files [*.py]", "*.py"),
                                                 ("CSS Files [*.css]", "*.css"),
                                                 ("C++ Files [*.cpp]", "*.cpp")]) 
@@ -139,7 +138,7 @@ class Notepad:
         self.__file = None
         self.__TextArea.delete(1.0, END)
     def __ShowInfo(self):
-        showinfo("InfiniNote", "Version-0.1 \n Reid Powell")
+        showinfo("InfiniNote", "Version-0.2 \n Reid Powell")
     def __Clear(self):
         self.__TextArea.delete(1.0, END)
     def run(self):
