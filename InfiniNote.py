@@ -128,8 +128,7 @@ class Notepad:
 
             file = open(self.__file, "r")
             lines = file.read()
-            self.__TextArea.insert(chr(lines))
-            print(lines)
+            self.__TextArea.insert('1.0', chars=lines)
             file.close()
             
     def __quitApplication(self):
@@ -140,7 +139,7 @@ class Notepad:
         self.__file = None
         self.__TextArea.delete(1.0, END)
     def __ShowInfo(self):
-        showinfo("InfiniNote", "Version-0.0 \n JacHammer Studios")
+        showinfo("InfiniNote", "Version-0.1 \n Reid Powell")
     def __Clear(self):
         self.__TextArea.delete(1.0, END)
     def run(self):
