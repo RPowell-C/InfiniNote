@@ -1,0 +1,2 @@
+theme=Vista
+font=Arial
