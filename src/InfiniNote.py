@@ -6,12 +6,23 @@ import os
 from tkinter.messagebox import *
 #Dialog Box
 from tkinter.filedialog import *
-
-#!/C:/User/garitbibbs/AppData/Local/Programs/Python/Python37/python.exe
-
+#theme
+from tkinter import ttk
+from tkinter.ttk import *
 class Notepad:
     __root = Tk()
     __root.geometry('500x600')
+    #get the ~ directory
+    home = os.path.expanduser("~")
+    #open the settings.txt file
+    file = open(home + '/infiniNote/InfiniNote/settings.txt')
+    content = file.readlines()
+    #get the font
+    font = content[1]
+    sett, font= font.split("=")
+    #get the theme (theme doesnt really work at the moment)
+    theme = content[0]
+    sett, theme = theme.split("=")
 #Menu
     __thisWidth = 500
     __thisHeight = 600
@@ -24,7 +35,7 @@ class Notepad:
 
     #Scrollbar
     __Scrollbar = Scrollbar(__TextArea)
-    __Scrollbar.config(bg= '#8A8E8E', activebackground= '#8A8E8E')
+    __Scrollbar.config()
     __file = None
 
     
@@ -34,9 +45,8 @@ class Notepad:
         #Future Update Set Icon
         #Title
         self.__root.title("Untitled - InfiniNote")
-        self.__TextArea['bg']='#8A8E8E'
-        self.__TextArea['font']='Times'
-        self.__MenuBar['font']='Times'
+        self.__TextArea['font']=self.font
+        self.__MenuBar['font']=self.font
 
          # Center the window 
         screenWidth = self.__root.winfo_screenwidth() 
@@ -61,9 +71,7 @@ class Notepad:
         self.__TextArea.grid(sticky = N + E + S + W)
         self.__Scrollbar.pack(side=RIGHT, fill=Y)
         self.__root.config(menu = self.__MenuBar)
-        self.__MenuBar.add_command(label="Info",
-        command=self.__ShowInfo)
-        #Save a File
+        #Save a file
         self.__FileMenu.add_command(label="Save",
         command=self.__SaveFile)
         #open a file
@@ -83,6 +91,9 @@ class Notepad:
                                         command=self.__quitApplication) 
         self.__MenuBar.add_cascade(label="File", 
                                         menu=self.__FileMenu)
+        #get info on the app
+        self.__MenuBar.add_cascade(label="Info",
+        command=self.__ShowInfo)
     def __SaveFile(self):
         if self.__file == None: 
             # Save as new file 
@@ -138,7 +149,7 @@ class Notepad:
         self.__file = None
         self.__TextArea.delete(1.0, END)
     def __ShowInfo(self):
-        showinfo("InfiniNote", "Version-0.2 \n Reid Powell")
+        showinfo("InfiniNote", "Version-0.3\nThe Eye Candy Update\nReid Powell")
     def __Clear(self):
         self.__TextArea.delete(1.0, END)
     def run(self):
